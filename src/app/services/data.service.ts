@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+const dataURL = 'http://localhost:8000'
+
 @Injectable({
   providedIn: 'root'
 })
-
-const dataURL = 'http://localhost:8000'
 export class DataService {
 
   constructor(private http: HttpClient) { }
