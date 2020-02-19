@@ -1,0 +1,43 @@
+<div class="p-3">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)" class="custom-form d-flex">
+      <mat-form-field>
+        <mat-label>Company Name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let company of companies" [value]="company.id" [formControl]="company">
+            {{company.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Product Name</mat-label>
+        <input matInput [formControl]="name">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Product Cost</mat-label>
+        <input matInput [formControl]="cost">
+      </mat-form-field>
+      <button class="button" type="submit" [disabled]="productForm.invalid">Add</button>
+    </form>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3" matSort>
+      <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+        <td mat-cell *matCellDef="let element"> {{element.company.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef> Cost </th>
+        <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
